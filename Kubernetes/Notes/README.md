@@ -1,0 +1,14 @@
+# Topics Covered
+ - Namespaces
+   - Create a ns
+   - Delete a ns
+   - Create deployment
+   - Change context in ns
+   - Desciption of a ns
+ - Description of pod and node
+ - Labels
+   - View label on a pod
+   - Add label to a pod
+ - Selectors
+   - Definition
+   - Displaying pods having specific labels
