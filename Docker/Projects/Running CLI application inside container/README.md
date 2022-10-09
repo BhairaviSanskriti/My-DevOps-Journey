@@ -5,10 +5,10 @@ I made a [cli application](https://github.com/BhairaviSanskriti/My-DevOps-Journe
 
 Here are the steps that I followed:
 
-1. **Base image** of the container →  *golang:1.18.6-alpine3.16* . It’s more apt because it’s size is small in comparison to other *golang* images, and also because we want to run a GO cli application.
+1. **Base image** of the container →  *golang:1.18.6-alpine3.16* . It’s size is small in comparison to other *golang* images, and already contains go libraries and dependencies.
 2. Then, I created a container using this base image and named it *food-app*. Entered into it. Created a directory */order-food* and wrote my code within this directory. My code constitutes files naming -  *main.go*, *bill.go*, *go.mod*, *greet.go*, *menu.go*, *modify.go*, *order.go* .
   
-3. I've added the code files. You can also refer to this:[https://github.com/BhairaviSanskriti/Order-Food](https://github.com/BhairaviSanskriti/Order-Food) repo to gain more insight on what this application is about.
+3. You can also refer to [this](https://github.com/BhairaviSanskriti/My-DevOps-Journey/tree/main/Go/Projects/CLI%20application%20to%20order%20food) repo to view the code of this program and to gain more insight on what this application is all about.
 4. After writing all the neccessary files into this directory we will exit out of this container.
 5. Make an image of this container by executing `docker commit food-app bhairavisanskriti/cli-app-image` command. This command will create an image of the name *bhairavisanskriti/cli-app-image* . As we have not specified the tag, so default tag will be assigned to it.
   ![image](https://user-images.githubusercontent.com/106534693/189168171-de36464e-56f6-44b0-adc0-c0337660067d.png)
