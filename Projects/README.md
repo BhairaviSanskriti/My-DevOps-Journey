@@ -6,3 +6,6 @@ These are the projects that I made to practice what I learnt.
 
 ## Docker 
 1. [Running a Go lang program inside a container](https://github.com/BhairaviSanskriti/My-DevOps-Journey/tree/main/Docker/Projects/Running%20CLI%20application%20inside%20container)
+
+## Kubernetes
+1. [Deploying a web page](https://github.com/BhairaviSanskriti/My-DevOps-Journey/tree/main/Kubernetes/Projects/Deploying%20portfolio%20using%20k8s)
