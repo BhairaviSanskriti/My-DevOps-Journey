@@ -48,13 +48,127 @@
 -  Helm uses the same config file, which `kubectl` command uses. Helm will get cluster info from this file.
 -  You can use another config file by setting the `KUBECONFIG` variable which will point to the config file.
 
-<!-- # Advanced Commands
-## Helm release workflow
-## Helm `--dry-run`
-  - `--dry-run` can be used for both installation & upgradation.
-## Helm template  (DIFF BTW DRY RUN AND TEMPLATE)
-  1. template command to see only template and not the release info.
-  2. Helm doesn't need an active k8s cluster to validate the, works even if you don;t have access stp a kubernetes cluster
-  3. helm will use tjhe default vaues in case it requres to fetch info or data from the k8s cluster.
-  4. always generetaes teomplates likes installaiton. -->
+# Helm commands
+
+- `helm repo list` -> list repo 
+- `helm repo add bitnami https://charts.bitnami.com/bitnami` -> add bitnami repo
+- `helm repo list`
+- `helm repo remove bitnami` -> remove bitnami repo
+- `helm repo add bitnami https://charts.bitnami.com/bitnami`
+
+
+### Search the repository for mysql package:
+- `helm search repo mysql`
+- `helm search repo database`
+- `helm search repo database --versions`
+
+
+### Install a mysql package named *mydb*:
+
+- `helm install mydb bitnami/mysql` 
+- **Check the cluster:**
+  - `kubectl get pods`
+- **Check the installation status:**
+  - `helm status mydb`
+
+
+
+
+### To uninstall a release
+- `helm uninstall mysql-release`
+
+### Update repo
+- `helm repo update`
+
+### To Upgrade:
+- `helm upgrade <release-name> bitnami/mysql --set/--values values.yaml`
+- You can also change the configuration at this stage
+- If you don't pass the config fiel then it will use the default one and not the one that you passed during the installation.
+- To reuse either provide the values again or use `--reuse-values`
+ - Eg, `helm upgrade mysql-release bitnami/mysql --set auth.rootPassword=$ROOT_PASSWORD`
+
+## Secret
+- Gets created everytime you do installation or upgradation.
+- This is nothing but a release record.
+	  - contains entire info about the installation
+- `helm uninstall <release-name> --keep-history` -> It will not delete the the release record (you'll need it in rollback)
+- Helm uses which of the following kubernetes resources to store release information? : Secret
+- Have template info and metadata about the info
+- `Helm get/ls` fetch info from secrets
+
+### `helm template <release-name> bitnami/<chart-name>`
+- Doesn't validate the template.
+- Therefore, doesn't need access to a k8s cluster
+- always generates templates unlike upgradation where only the difference is there.
+- k8s functions or functions that fetch the data from the k8s cluster on the fly, those functions will be replaced with default values.
+	
+### release records
+- `kubectl get secrets <secretName> -o yaml`
+
+### `helm get notes <release-name>`
+- to get release notes of this installation.
+
+### `helm get values <release-name>`
+- lists customized values not the default ones (for the current release). Eg, helm get values tomcat
+- to get 
+	- all the values used `--all`. Eg, `helm get values tomcat --all`
+	- values of a particular revision use `--revision <revision-number>`. Eg, helm get values tomcat revision 
+### `helm get manifest <release-name>`
+- to get manifest for the current release
+- `--revision <revision-number>`
+	
+### helm history <release-name>
+- Shows the history of intallations and upgrades including the error info
+	
+### helm rollback <release-name> <revision-version>
+- If you keep the history even after unistallation then you can rollback to a particular version of your deployment on the cluster again!
+	
+### Creating namespace (during installation)
+- use `--create-namespace`
+- `helm install <release-name> bitnami/<chart-name> -n <ns-name> --create-namespace`
+
+### `helm upgrade --install <release-name> bitnami/<chart-name>`
+- The way this command works, it will first check if the installation is already there.
+- If it is there it will do the upgrade, otherwise it will do a install.
+- This is very helpful in our CI CD pipeline as the code gets committed to git or any other repository and the CI CD pipeline gets kicked off for the very first time.
+- Eg, 
+	- Release "webs" does not exist. Installing it now.
+	- Release "webs" has been upgraded. Happy Helming!
+		
+### `--generate-name` (installation)
+- to let helm choose the release name of a chart. Eg, helm install bitnami/apache --generate-name
+- To provide a template:
+	- Eg, `--name-template "mywebserver-{{randAlpha 8 | lower}}"`
+	
+### `--wait --timeout 10m10s` (installation)
+- the helm install command considers the installation to be successful as soon as the manifest is received by the kubernetes API server 
+- It doesn't wait for the pods to be up and running.
+- use `--wait --timeout`
+- `--timeout`: to control the timeout period.
+- Helm will wait for the services and deployments to be created, 
+	   and also the pods should be up and running only then the installation is considered successful.
+- Eg, `helm install <release-name> bitnami/<chart-name> --wait --timeout 10m10s`
+	
+### `--atomic` (installation)
+- if the pods are not up and running in the given time out period, or 
+	   if you use the default time out within the five minutes, then wait will mark the installation as a failure
+- automatically roll back to a previous successful release.
+- no need to use --wait; it will be automatically enabled.
+- Eg, helm install <release-name> bitnami/<chart-name> --atomic --timeout 10m10s
+
+### `--force` (during upgradation)
+- to delete a deployment and create pods again.
+- there will be some downtime.
+	
+### `--cleanup-on-failure` (during upgradation)
+- If an upgrade fails, we want to clean up all the resources that were created.
+	   This could be config maps or secrets.
+- don't use it if you want to debug
+	
+	
+	
+	
+	
+
+
  
