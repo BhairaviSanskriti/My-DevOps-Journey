@@ -115,13 +115,14 @@
 	- values of a particular revision use `--revision <revision-number>`. Eg, helm get values tomcat revision 
 ### `helm get manifest <release-name>`
 - to get manifest for the current release
-- `--revision <revision-number>`
+	- `--revision <revision-number>`
 	
-### helm history <release-name>
+### `helm history <release-name>`
 - Shows the history of intallations and upgrades including the error info
-	
-### helm rollback <release-name> <revision-version>
+- Eg, `helm history <release-name>` 
+### `helm rollback <release-name> <revision-version>`
 - If you keep the history even after unistallation then you can rollback to a particular version of your deployment on the cluster again!
+- Eg, `helm rollback <release-name> <revision-version>` 
 	
 ### Creating namespace (during installation)
 - use `--create-namespace`
@@ -154,7 +155,7 @@
 	   if you use the default time out within the five minutes, then wait will mark the installation as a failure
 - automatically roll back to a previous successful release.
 - no need to use --wait; it will be automatically enabled.
-- Eg, helm install <release-name> bitnami/<chart-name> --atomic --timeout 10m10s
+- Eg, `helm install <release-name> bitnami/<chart-name> --atomic --timeout 10m10s`
 
 ### `--force` (during upgradation)
 - to delete a deployment and create pods again.
