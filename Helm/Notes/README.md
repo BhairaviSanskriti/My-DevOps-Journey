@@ -94,7 +94,7 @@
 - `helm uninstall <release-name> --keep-history` -> It will not delete the the release record (you'll need it in rollback)
 - Helm uses which of the following kubernetes resources to store release information? : Secret
 - Have template info and metadata about the info
-- `Helm get/ls` fetch info from secrets
+- `helm get/ls` fetch info from secrets
 
 ### `helm template <release-name> bitnami/<chart-name>`
 - Doesn't validate the template.
@@ -109,13 +109,15 @@
 - to get release notes of this installation.
 
 ### `helm get values <release-name>`
-- lists customized values not the default ones (for the current release). Eg, helm get values tomcat
+- lists customized values not the default ones (for the current release). 
+	- Eg, `helm get values tomcat`
 - to get 
-	- all the values used `--all`. Eg, `helm get values tomcat --all`
-	- values of a particular revision use `--revision <revision-number>`. Eg, helm get values tomcat revision 
+	- all the values used `--all`. 
+		- Eg, `helm get values tomcat --all`
+	- values of a particular revision use `--revision <revision-number>`. 
+		- Eg, `helm get values tomcat revision`
 ### `helm get manifest <release-name>`
-- to get manifest for the current release
-	- `--revision <revision-number>`
+- to get manifest for the current release use `--revision <revision-number>` flag
 	
 ### `helm history <release-name>`
 - Shows the history of intallations and upgrades including the error info
@@ -137,7 +139,7 @@
 	- Release "webs" has been upgraded. Happy Helming!
 		
 ### `--generate-name` (installation)
-- to let helm choose the release name of a chart. Eg, helm install bitnami/apache --generate-name
+- to let helm choose the release name of a chart. Eg, `helm install bitnami/apache --generate-name`
 - To provide a template:
 	- Eg, `--name-template "mywebserver-{{randAlpha 8 | lower}}"`
 	
@@ -164,12 +166,46 @@
 ### `--cleanup-on-failure` (during upgradation)
 - If an upgrade fails, we want to clean up all the resources that were created.
 	   This could be config maps or secrets.
-- don't use it if you want to debug
-	
-	
-	
-	
-	
+- don't use it if you want to debug   
+---
+
+   
+# Create Charts
+#### How to create charts
+`helm create <mychart>`
+#### Structure of chart directory
+A directory named *mychart* is created. It contains 2 files and 2 folders-
+- **Chart.yaml** has the metadata about our chart, 
+- **charts** folder is where the dependent charts will be copied.
+- **templates** folder has all the templates that will be used to render the Kubernetes manifest later on.
+- **values.yaml** are where all the default values for these templates are stored, and we can override those values during installation.
+
+### Install the chart
+- `helm install <release-name>  <chart-name>`
+- Let's say you want to install the *mychart* with the release name *firstapp*:
+	- `helm install firstapp mychart`
+### Chart.yaml
+- Additional elements that you can have in your *CHart.yaml* file:
+	- **icon:** <image-url>
+	- **keywords:** Explains what the project does; list
+	  
+	  - db project
+	  
+	  - healthcare
+	- **home:** <project-url>
+	- **sources:** It's a list of project sources; can also be url
+	- **maintianers:** List of maintainers
+	   - name: xyz
+	   
+	     email: xyz@gmail.com
+
+---
+
+### Template Deep Dive
+#### Template Actions
+- action elements are where we define the dynamic logic within which will be using various other Helm templating, syntactical elements and anything outside of these actions, as you can see, metadata, etc. will be rendered as it is in the output and that will be sent to Kubernetes.
+
+<!-- #### Define variables -->
 
 
  
