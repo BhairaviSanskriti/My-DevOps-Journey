@@ -9,3 +9,6 @@ These are the projects that I made to practice what I learnt.
 
 ## Kubernetes
 1. [Deploying a web page](https://github.com/BhairaviSanskriti/My-DevOps-Journey/tree/main/Kubernetes/Projects/Deploying%20portfolio%20using%20k8s)
+
+## Helm
+1. [Deploying a web page using helm](https://github.com/BhairaviSanskriti/My-DevOps-Journey/blob/main/Helm/Projects/README.md)
