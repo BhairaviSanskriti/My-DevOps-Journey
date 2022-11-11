@@ -1,5 +1,5 @@
 # About
-I deployed a static portflio website on minikube cluster using helm charts.
+I deployed a static portfolio website on the minikube cluster using helm charts.
 
 # System requirements
 1. Helm 
