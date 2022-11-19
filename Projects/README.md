@@ -12,3 +12,6 @@ These are the projects that I made to practice what I learnt.
 
 ## Helm
 1. [Deploying a web page using helm](https://github.com/BhairaviSanskriti/My-DevOps-Journey/blob/main/Helm/Projects/README.md)
+
+## Jenkins
+1. [Creating a CI pipeline](https://github.com/BhairaviSanskriti/My-DevOps-Journey/blob/db4ddf23460e2cc27192fe348db66213d58427ee/Jenkins/Projects/Creating%20CI%20pipeline%20for%20a%20web%20application/README.md)
