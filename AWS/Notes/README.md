@@ -1,6 +1,7 @@
 # **AWS Cloud Practitioner Essentials**
 Developing fundamentals understanding of the AWS Cloud using [AWS Cloud Practitioner Essentials
 ](https://aws.amazon.com/training/digital/aws-cloud-practitioner-essentials/) course. 
+Making short notes as I learn, using this course.
 ### ****Deployment models for cloud computing****
 
 1. Cloud-based Deployment (”Private Cloud”)→ AWS, Azure, GCP 
