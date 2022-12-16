@@ -19,7 +19,7 @@ Making short notes as I learn, using this course.
 
 ### **Types of cloud computing**
 
-1. Infrastructure as a Service (Iaa
+1. Infrastructure as a Service (IaaS)
 2. Platform as a Service (PaaS)
 3. Software as a Service (SaaS)
     ![Screenshot from 2022-12-14 16-06-20](https://user-images.githubusercontent.com/106534693/207647905-6d5dc365-83d9-4e4b-b744-5c32b9f68963.png)
