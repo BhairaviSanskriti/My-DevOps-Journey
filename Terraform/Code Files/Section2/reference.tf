@@ -1,7 +1,7 @@
 provider "aws"{
     region = "ap-south-1"
-    access_key = "AKIAREWUAHKSIYKJBXM3"
-    secret_key = "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"
+    access_key = "xyz"
+    secret_key = "abc"
 }
 resource "aws_instance" "test-ec2-instance"{
     ami = "ami-0cca134ec43cf708f" # Image id for the ap-south-1 region
