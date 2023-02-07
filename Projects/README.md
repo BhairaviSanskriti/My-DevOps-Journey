@@ -21,5 +21,5 @@ These are the projects that I made to practice what I learnt.
 ## Terraform, AWS EKS, ArgoCD and Jenkins
 1. [Created a CI/CD pipeline to deploy application on an EKS cluster](https://github.com/BhairaviSanskriti/Assignment)
   - Provisioned an AWS EKS infrastructure using Terraform and deployed nginx application
-on the cluster using ArgoCD.
+on the cluster.
   - Automated the whole process using Jenkins.
